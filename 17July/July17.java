@@ -3,8 +3,10 @@ import java.util.*;
 
 public class July17 {
     public static void main(String[] args) {
-        // int[] arr = { 50, 25, 12, -1, 37, 30, -1, 40, -1, -1, -1, 75, 62, 60, -1, 70, -1, -1, 87, -1, -1, -1 };
-        // Node root = construct(arr);
+        int[] arr = { 50, 25, 12, -1, 37, 30, -1, 40, -1, -1, -1, 75, 62, 60, -1, 70, -1, -1, 87, -1, -1, -1 };
+        // int[] arr = { 0, 1, 0, -1, 1, -1, -1, 1, 1, -1, 0, -1, -1};
+
+        Node root = construct(arr);
         // display(root);
 
         // levelOrder
@@ -19,7 +21,7 @@ public class July17 {
         // vertexCover(root);
         // BTCameras(root);
         // deSerialization();
-        sumofKLvlBT(root,2);
+        // sumofKLvlBT(root,1);
         // reverseLvlOrder(root);
         // maxPathSum
         // maxPathSumNL(root);
@@ -29,9 +31,9 @@ public class July17 {
         // pathInRange(root);
         // BTPrune(root);
         // BTTilt(root);
-        // rightSideView(root);
-        // leftSideView(root);
-        // BTdll(root);
+        // rightSideView(root,0);
+        // leftSideView(root,0);
+        BTdll(root);
         // BTcdll(root);
         // boundariesinBT(root);
     }
@@ -320,8 +322,23 @@ public class July17 {
         display(root);
     }
 
-    public static void sumofKLvlBT(Node root,int k) {
-
+    public static void sumofKLvlBT(Node root, int k) {
+        LinkedList<HelperClass> q = new LinkedList<>();
+        q.addLast(new HelperClass(root, 0));
+        int sum = 0;
+        while (q.size() > 0) {
+            HelperClass rem = q.removeFirst();
+            if (rem.level == k) {
+                sum += rem.node.data;
+            }
+            if (rem.node.left != null) {
+                q.addLast(new HelperClass(rem.node.left, rem.level + 1));
+            }
+            if (rem.node.right != null) {
+                q.addLast(new HelperClass(rem.node.right, rem.level + 1));
+            }
+        }
+        System.out.println(sum);
     }
 
     public static void reverseLvlOrder(Node root) {
@@ -349,23 +366,98 @@ public class July17 {
     }
 
     public static void BTPrune(Node root) {
-
+        Node ans = BTPruneSlave(root);
+        display(ans);
     }
+
+    public static Node BTPruneSlave(Node root) {
+        if (root.left == null && root.right == null && root.data == 0) {
+            return null;
+        }
+        if (root.left == null && root.right == null && root.data == 1) {
+            return root;
+        }
+        if (root.left != null) {
+            Node la = BTPruneSlave(root.left);
+            root.left = la;
+        }
+        if (root.right != null) {
+            Node ra = BTPruneSlave(root.right);
+            root.right = ra;
+        }
+        return root;
+    }
+
+    public static int tilt = 0;
 
     public static void BTTilt(Node root) {
-
+        int ans = BTTiltSlave(root);
+        System.out.println(tilt);
     }
 
-    public static void rightSideView(Node root) {
-
+    public static int BTTiltSlave(Node root) {
+        if (root == null) {
+            return 0;
+        }
+        int ls = BTTiltSlave(root.left);
+        int rs = BTTiltSlave(root.right);
+        int rv = ls + rs + root.data;
+        tilt += Math.abs(ls - rs);
+        return rv;
     }
 
-    public static void leftSideView(Node root) {
+    public static int ml = -1;
 
+    public static void rightSideView(Node root, int lvl) {
+        if (lvl > ml) {
+            System.out.print(root.data + " ");
+            ml = lvl;
+        }
+        if (root.right != null) {
+            rightSideView(root.right, lvl + 1);
+        }
+        if (root.left != null) {
+            rightSideView(root.left, lvl + 1);
+        }
+    }
+
+    public static void leftSideView(Node root,int lvl) {
+        if (lvl > ml) {
+            System.out.print(root.data + " ");
+            ml = lvl;
+        }
+        if (root.left != null) {
+            leftSideView(root.left, lvl + 1);
+        }
+        if (root.right != null) {
+            leftSideView(root.right, lvl + 1);
+        }
     }
 
     public static void BTdll(Node root) {
+        LinkedList<Node> ans=BTdllSlave(root);
+        for (Node i : ans) {
+            System.out.print(i.data+ " ");
+        }
+    }
 
+    public static LinkedList<Node> BTdllSlave(Node root){
+        if(root.left==null && root.right==null){
+            LinkedList<Node>base= new LinkedList<>();
+            base.addLast(root);
+            return base;
+        }
+        LinkedList<Node> ll=BTdllSlave(root.left);
+        LinkedList<Node> rl=BTdllSlave(root.right);
+        LinkedList<Node> ml=new LinkedList<>();
+        for (Node node : ll) {
+            ml.addLast(node);
+        }
+        ml.add(root);
+        for (Node node : rl) {
+            ml.add(node);
+        }
+        return ml;
     }
 
     public static void BTcdll(Node root) {

@@ -1,0 +1,34 @@
+public class Java18 {
+    public static void main(String[] args) {
+        rootToLeafPIR();
+        nodesAtOddLvl();
+        sumOfOddNEvenLvl();
+        kUPLeaf();
+        kDown();
+        kFar();
+        mirrorBT();
+        minDistbwBSTNodes();
+        minDepthBT();
+        minDepth_In_Pre();
+        maxNodesAtLvl();
+        sumNtoL();
+        sumLtoL();
+        sumNtoN();
+        LLtoBT();
+        BTtoBST();
+        longestConsecutiveInTree();
+        leftMostrightMost();
+        isBST();
+        largestBSTRoot();
+        largestBSTSize();
+        leafAtSameLvl();
+        leafUnderBudget();
+        kthLargest();
+        isSimilar();
+        isMirror();
+        isFoldable();
+        transformToLD();
+        transformFromLD();
+        clonningWithRandomPointer();
+    }   
+}
