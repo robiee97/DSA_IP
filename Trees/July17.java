@@ -33,9 +33,13 @@ public class July17 {
         // BTTilt(root);
         // rightSideView(root,0);
         // leftSideView(root,0);
-        BTdll(root);
+        // BTdll(root);
         // BTcdll(root);
         // boundariesinBT(root);
+
+        // topView(root,0);
+        // bottomView(root,0);
+        // System.out.println(map);
     }
 
     public static class Node {
@@ -460,11 +464,83 @@ public class July17 {
         return ml;
     }
 
-    public static void BTcdll(Node root) {
+    public static class Block{
+        int data;
+        Block next;
+        public Block(int data, Block next){
+            this.data=data;
+            this.next=next;
+        }
+    }
+    public static class CLL{
+        public Block head;
+        public Block tail;
+        public CLL(){
+            head=null;
+            tail=null;
+        }
+        void addLast(int data){
+            Block b=new Block(data,null);
+            if(head==null){
+                head=tail=b;
+            }else{
+                tail.next=b;
+                tail=b;
+            }
+        }
+    }
 
+    public static void BTcdll(Node root) {
+        CLL cll=BTcdllSlave(root);
+        // cll.tail.next=cll.head;
+        while(cll.head!=null){
+            System.out.print(cll.head.data+"->");
+            cll.head=cll.head.next;
+        }
+    }
+
+    public static CLL BTcdllSlave(Node root){
+        if(root.left==null && root.right==null){
+            CLL baseCLL=new CLL();
+            baseCLL.addLast(root.data);
+            return baseCLL;
+        }
+        CLL ll=BTcdllSlave(root.left);
+        CLL rl=BTcdllSlave(root.right);
+        CLL ml=new CLL();
+        ml.addLast(root.data);
+        if(ll.head!=null){
+            ll.tail.next=ml.head;
+            ml.head=ll.head;
+        }
+        if(rl.head!=null){
+            ml.tail.next=rl.head;
+            ml.tail=rl.tail;
+        }
+        return ml;
     }
 
     public static void boundariesinBT(Node root) {
 
+    }
+    
+    public static TreeMap<Integer,Integer> map = new TreeMap<>();
+    public static void topView(Node root,int timeLine){
+        if(root==null){
+            return;
+        }
+        if(!map.containsKey(timeLine)){
+            map.put(timeLine,root.data);
+        }
+        topView(root.left,timeLine-1);
+        topView(root.right,timeLine+1);
+    }
+    public static void bottomView(Node root,int timeLine){
+        if(root==null){
+            return;
+        }
+        map.put(timeLine,root.data);
+        bottomView(root.left,timeLine-1);
+        bottomView(root.right,timeLine+1);
     }
 }
