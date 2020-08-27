@@ -790,9 +790,88 @@ public class Stacks {
 		return res;
 	}
 
-	public static void main(String[] args) {
+	public static class LRU{
+		static Deque<Integer> dq;
+		static HashMap<Integer,Integer> hm; 
+		static int size=0;
+		public LRU(int N) {
+			dq=new LinkedList<>();
+			hm=new HashMap<>();
+			size=N;
+		}
+		public static int get(int x) {
+			if(!hm.containsKey(x)){
+				return -1;
+			}else{
+			   dq.remove(x);
+			   dq.addFirst(x);
+			   return hm.get(x);
+			}
+		}
+		public static void set(int x, int y) {
+			if(!hm.containsKey(x)){
+				if(dq.size()>=size){
+					int peek=dq.peekLast();
+					dq.removeLast();
+					hm.remove(peek);
+				}
+				dq.addFirst(x);
+				hm.put(x,y);
+			}else{
+			   dq.remove(x);
+			   dq.addFirst(x);
+			  hm.put(x,y);
+			}
+		}
+	}
 
-		
+	public static class Kstacks{
+		static int[]data;
+		static int[]next;
+		static int[]top;
+		static int free;
+		public Kstacks(int n, int k){
+			data= new int[n];
+			next= new int[n];
+			top= new int[k];
+			free=0;
+			for(int i=0;i<k;i++){
+				top[i]=-1;
+			}
+			for(int i=0;i<n-1;i++){
+				next[i]=i+1;
+			}
+			next[n-1]=-1;
+		}
+		void push(int val,int s){
+			if(free==-1){
+				return;
+			}
+			int currInd=free;
+			free=next[currInd];
+			next[currInd]=top[s];
+			top[s]=currInd;
+			data[currInd]=val;
+		}
+		int pop(int s){
+			if(top[s]==-1){
+				return -1;
+			}
+			int currInd=top[s];
+			int val= data[currInd];
+			top[s]= next[currInd];
+			next[currInd]=free;
+			free=currInd;
+			return val;
+		}
+	}
+	
+	public static void main(String[] args) {		
+//		System.out.println(validParenthesis("()())))()()(()"));
+// 		nextGreaterEle();
+// 		maxInSW();
+// 		largestAreaHistogram();
+// 		mergeOverLapInt();
 //		dididi("iddiddii");
 //		dididi("ddidddid");
 		
@@ -868,5 +947,30 @@ public class Stacks {
 
 		// int[] arr={2,5,-1,7,-3,-1,-2};
 		// System.out.println(sumOfMinMax(arr,4));
+			
+		// LRU cache= new LRU(2); 
+        // cache.set(1, 10);  
+        // cache.set(2, 20);  
+        // System.out.println(cache.get(1));
+        // cache.set(3, 30);  
+        // System.out.println(cache.get(2)); 
+        // cache.set(4, 40);  
+        // System.out.println(cache.get(1));
+        // System.out.println(cache.get(3)); 
+		// System.out.println(cache.get(4)); 
+		
+
+			// Kstacks ks= new Kstacks(10,3);
+			// ks.push(15, 2); 
+			// ks.push(45, 2); 
+	  		// ks.push(17, 1); 
+			// ks.push(49, 1); 
+			// ks.push(39, 1); 
+			// ks.push(11, 0); 
+			// ks.push(9, 0); 
+			// ks.push(7, 0); 
+			// System.out.println("Popped element from stack 2 is " + ks.pop(2)); 
+			// System.out.println("Popped element from stack 1 is " + ks.pop(1)); 
+			// System.out.println("Popped element from stack 0 is " + ks.pop(0)); 
 	}
 }
