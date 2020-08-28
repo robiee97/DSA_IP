@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class July17 {
@@ -23,20 +22,19 @@ public class July17 {
         // deSerialization();
         // sumofKLvlBT(root,1);
         // reverseLvlOrder(root);
-        // maxPathSum
-        // maxPathSumNL(root);
-        // maxPathSumLL(root);
-        // maxPathSumNN(root);
-        // rootToleafPath(root);
-        // pathInRange(root);
+        // System.out.println(maxPathSumNL(root));
+        // maxPathSumLL(root);System.out.println(max);
+        // maxPathSumNN(root);System.out.println(max);
+        // rootToleafPath(root,new LinkedList<>());
+        // pathInRange(root,150,250,0);
         // BTPrune(root);
         // BTTilt(root);
         // rightSideView(root,0);
         // leftSideView(root,0);
         // BTdll(root);
         // BTcdll(root);
+        // allLeafs(root);
         // boundariesinBT(root);
-
         // topView(root,0);
         // bottomView(root,0);
         // System.out.println(map);
@@ -349,24 +347,62 @@ public class July17 {
 
     }
 
-    public static void maxPathSumNL(Node root) {
-
+    public static int maxPathSumNL(Node root) {
+        if(root.left==null && root.right==null){
+            return root.data;
+        }
+        int ls=maxPathSumNL(root.left);
+        int rs=maxPathSumNL(root.right);
+        return Math.max(ls, rs)+root.data;
+    }
+    
+    public static int max=Integer.MIN_VALUE;
+    public static int maxPathSumLL(Node root) {
+        if(root.left==null && root.right==null){
+            return root.data;
+        }
+        int ls=maxPathSumNL(root.left);
+        int rs=maxPathSumNL(root.right);
+        max=Math.max(max,ls+rs+root.data);
+        return ls+rs+root.data;
     }
 
-    public static void maxPathSumLL(Node root) {
-
+    public static int maxPathSumNN(Node root) {
+        if(root.left==null && root.right==null){
+            return root.data;
+        }
+        int ls=maxPathSumNL(root.left);
+        int rs=maxPathSumNL(root.right);
+        max=Math.max(max, Math.max(ls+root.data, Math.max(rs+root.data,root.data)));
+        return ls+rs+root.data;
     }
 
-    public static void maxPathSumNN(Node root) {
-
+    public static void rootToleafPath(Node root ,LinkedList<Integer> asf) {
+        if(root.left==null && root.right==null){
+            asf.addLast(root.data);
+            System.out.println(asf);
+            asf.removeLast();
+            return;
+        }
+        asf.addLast(root.data);
+        rootToleafPath(root.left, asf);
+        rootToleafPath(root.right, asf);
+        asf.removeLast();
     }
 
-    public static void rootToleafPath(Node root) {
-
-    }
-
-    public static void pathInRange(Node root) {
-
+    public static void pathInRange(Node root,int lo ,int hi, int asf) {
+        if(root.left==null && root.right==null){
+            asf+=root.data;
+            if(asf>=lo &&asf<=hi){
+                System.out.println(asf);
+            }
+            asf-=root.data;
+            return;
+        }
+        asf+=root.data;
+        pathInRange(root.left,lo,hi,asf);
+        pathInRange(root.right,lo,hi,asf);
+        asf-=root.data;
     }
 
     public static void BTPrune(Node root) {
@@ -395,7 +431,7 @@ public class July17 {
     public static int tilt = 0;
 
     public static void BTTilt(Node root) {
-        int ans = BTTiltSlave(root);
+        BTTiltSlave(root);
         System.out.println(tilt);
     }
 
@@ -410,12 +446,14 @@ public class July17 {
         return rv;
     }
 
-    public static int ml = -1;
-
+    public static int mll = -1;
+    public static int mlr = -1;
+    public static LinkedHashSet<Integer> set= new LinkedHashSet<>();
     public static void rightSideView(Node root, int lvl) {
-        if (lvl > ml) {
+        if (lvl > mlr) {
             System.out.print(root.data + " ");
-            ml = lvl;
+            // set.add(root.data);
+            mlr = lvl;
         }
         if (root.right != null) {
             rightSideView(root.right, lvl + 1);
@@ -426,9 +464,10 @@ public class July17 {
     }
 
     public static void leftSideView(Node root,int lvl) {
-        if (lvl > ml) {
+        if (lvl > mll) {
             System.out.print(root.data + " ");
-            ml = lvl;
+            // set.add(root.data);
+            mll = lvl;
         }
         if (root.left != null) {
             leftSideView(root.left, lvl + 1);
@@ -520,9 +559,24 @@ public class July17 {
         return ml;
     }
 
-    public static void boundariesinBT(Node root) {
-
+    public static void allLeafs(Node root){
+        if(root.left==null&& root.right==null){
+            System.out.print(root.data+" ");
+            // set.add(root.data);
+            return;
+        }
+        allLeafs(root.left);
+        allLeafs(root.right);
     }
+    public static void boundariesinBT(Node root) {
+            //leftview 
+            leftSideView(root, 0);
+            //all leafs
+            allLeafs(root);
+            //rightview
+            rightSideView(root, 0);            
+        System.out.println(set);
+        }
     
     public static TreeMap<Integer,Integer> map = new TreeMap<>();
     public static void topView(Node root,int timeLine){
