@@ -15,6 +15,7 @@ public class July18 {
         // kDown(root,null,3);
         // kFar(root,75,2);
         // mirrorBT(root);
+        // display(root);
         // minDistbwBSTNodes(root);
         // minDepthBT(root,0);System.out.println(depth);
         // minDepth_In_Pre();
@@ -41,8 +42,7 @@ public class July18 {
         // isSimilar();
         // isMirror();
         // isFoldable();
-        // transformToLD();
-        // transformFromLD();
+        display(transformFromLD(transformToLD(root)));
         // clonningWithRandomPointer();
     }
 
@@ -202,7 +202,15 @@ public class July18 {
     }
 
     public static void mirrorBT(Node root) {
+        if(root==null){
+            return;
+        }
+        Node temp=root.left;
+        root.left=root.right;
+        root.right=temp;
 
+        mirrorBT(root.left);
+        mirrorBT(root.right);
     }
 
     public static void minDistbwBSTNodes(Node root) {
@@ -445,24 +453,40 @@ public class July18 {
         kthLargestSlave(root.right,list);
     }
 
-    public static void isSimilar(Node root) {
-
+    public static boolean isSymmetric(Node root) {
+        return isMirror(root, root);
     }
 
-    public static void isMirror(Node root) {
-
+    public static boolean isMirror(Node root1,Node root2) {
+        if(root1==null && root2==null){
+            return true;
+        }if(root1==null || root2==null){
+            return false;
+        }
+        return root1.data==root2.data && isMirror(root1.left, root2.right) &&isMirror(root1.right, root2.left);
     }
 
     public static void isFoldable(Node root) {
 
     }
 
-    public static void transformToLD(Node root) {
-
+    public static Node transformToLD(Node root) {
+        if(root==null){
+            return null;
+        }
+        root.left=transformToLD(root.left);
+        root.right=transformToLD(root.right);
+        root.left=new Node(root.data,root.left,null);
+        return root;
     }
 
-    public static void transformFromLD(Node root) {
-
+    public static Node transformFromLD(Node root) {
+        if(root==null){
+            return null;
+        }
+        root.left=transformFromLD(root.left.left);
+        root.right=transformFromLD(root.right);
+        return root;
     }
 
     public static void clonningWithRandomPointer(Node root) {
