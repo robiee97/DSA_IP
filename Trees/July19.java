@@ -106,8 +106,28 @@ public class July19 {
         }
     }
 
-    public static void perfectBT() {
-        //lvl order all leafs should come on same lvl
+    public static int count(Node root){
+        if(root==null){
+            return 0;
+        }
+        int l=count(root.left);
+        int r=count(root.right);
+        return l+r+1;
+    }
+    public static int height(Node root){
+        if(root==null){
+            return 0;
+        }
+        int l=height(root.left);
+        int r=height(root.right);
+        return Math.max(l,r)+1;
+    }
+    public static boolean perfectBT(Node root) {
+        //total no. of nodes=2^height-1
+        int c=count(root);
+        int h=height(root);
+        System.out.println(c+" "+h);
+        return Math.pow(2, h)-1==c;
     }
 
     public static Node prein(int[] pre, int psi, int pei, int[] in, int isi, int iei) {
@@ -330,7 +350,7 @@ public class July19 {
 
         // morrisTravNLR(root);
         // morrisTravLNR(root);
-        // perfectBT();
+        // System.out.println(perfectBT(root));
         // int[] pre   = { 50, 25, 12, 37, 30, 75, 62, 70, 87 };
         // int[] in    = { 12, 25, 30, 37, 50, 62, 70, 75, 87 };
         // int[] post  = { 12, 30, 37, 25, 70, 62, 87, 75, 50 };

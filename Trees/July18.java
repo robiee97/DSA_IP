@@ -42,7 +42,7 @@ public class July18 {
         // isSimilar();
         // isMirror();
         // isFoldable();
-        display(transformFromLD(transformToLD(root)));
+        // display(transformFromLD(transformToLD(root)));
         // clonningWithRandomPointer();
     }
 
