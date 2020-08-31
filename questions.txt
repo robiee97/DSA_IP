@@ -1,17 +1,93 @@
-
+HashMap&PQ:
 19June:
 greatestSmallerOnLeft,fakeProfile,distinctElementsAfterOp,gapBWHandLFreq,duplicatesInArr,noAdjEleSame,ksmallestInSameOrder,smallestSubArrAllOccOfHFC,sortEleOnFreq,subdomain,countTarSumSubArr,countTarSumSubArrOfZero,countSubArrOf0s1s,countBinarySubArrSumTar,countSubArrMulOfK,smallestWindowOfRinSJustExist,smallestWindowOfRinSExactSame,allDistinctCharOfSinR,allAnagrams,
+
 22June:
 uncommonChar,validSudoku,uncommonWordsin2String,unionOfArrays,validAnagram,pepCodingNewSys,groupShiftedString,gana,happyNumber,heightOfHeap,inFirstNotSecond,islandParameter,commonEle1,commonEle2,keyboardRow,jewelsAndStones,isomorphic,kLargerInStream,kthLargest,kthClosestToOrigin
 
 23June:
 minimumRooms1,minimumRooms2,longestConsecutiveSubsequence,maxBWTwoSameChar,longestSubArrZerosAndOnes,longestPallindromicSubsequence,loggerRateLimiter,equivalentArr,wordPattern,longestSubArrKOnes
-
+************************************************************************
+Arrays&Strings
 26June:
 revealCardsIncOrder,abcShift,longPressedName,maxCutsToSortedArr,boldTag,longestConsecutiveOnes,magicSquare,intToEng(567412237, 0).
 
 27June:
+maxUnsortedSubArrToMakeSort,squaresInSortedOrder,poisonEveryKMinutes,similarRGB,productOfArr,toeplitzMatrix,oneAanagram,longestPairInStr,ransomeNote,sortArr0_1UsingParity,sortArrOddEvenUsingParity,spiralMatrix,removeComments
+
+28June:
+kdistinctEleOfGap,mostWaterContainer,buyAndSellStock,countSubArr0s1sAll0sTogether,nestingArr,nestingArr2
+
+29June:
+bestSightSeeing,integerToRoman,romanToInteger,pourWater,tripletSumClosest,ambigousCoordinates,loopingInArr
+
+1July:
+sortCustomString,sortCustomNum,binaryStringRep,fibLOGN,rangeAdd,closestPallindrom    
+
+2July:
+flipStrToMonotonic,globalNLocalInv,jumpGame,majorityElement,maxConsecOnes,nextGreaterEleInDigits,kadanes,kkadanes,subArrWithTarSum,eqiliIndex,diffOfPair
+
+3July:      choclateDis,maxSubArrSuminCircularArr,sumOfSubseqWidths,subArrProductLessThanK,shortestPallindrom
+
+************************************************************************
+DP&Greedy:
+5July:
+miniMovesToPrintNxs,seiveVariation,steps,paths,minCost,goldmine,targetSumSubset,coinChangePerm,coinChangeComb,ZOKS,UBKS
+
+6July:      longestIncSubq,longestDecSubq,longestBitonicSubq,maxSumIncSubq,longestIncSubArr,maxDeletionToSortArr,longestCommonSubseq,longestPallSubseq,countPallSubseq,longestPallSubstr,countPallSubstr,minPalCut,eggDrop,primeNSemiPrime
+
+7July:
+KS path,LIS path,ED path,personGoesToParty,
+countBinaryString,countStringOfType_an_bn_cn
+
+8JulyIP1:
+arithmaticSlice,arithmaticSliceSubSeq,scrambledString,cherryPick,rodcut,russianDollEnvelop,bridges,activitySelection
+
+8JulyIP2:
+addRemRep,countEncoding,matrixChainMult,greedyCoinPick,optimalBST,catalanNo,maxsumNoadjacent,jobSequence,fractionalKS,largestSquare,largestRectangleOf1s
+
+9JulyIP1&2:
+paintHouse,paintFence,countEncoding,bsbINFTFees,bsb1T,bsb2T,bsbKT
+        
+12July:
+friends,minIns,minDele,lcsOf3,cnwToPartinKset,wordBreak,keyBoard,noSolPossible
+    
+13July:
+maxSumAltSubseq,HighWayBillBoard,templeOfferings,Ntiles,probabilityOfKnight,booleanParanthesis,lengthOfLongestValidSubstring,wordWrap
 
 
+************************************************************************
+OOPS 14July,15July
+************************************************************************
+Trees:
+17July:
+levelOrder-prevLvl,delimiter,2Lists,Count
+avgLvlBT,BSTItr,SOG,vertexCover,BTCameras,sumofKLvlBT,reverseLvlOrder,maxPathSum-nl,ll,nn,rootToleafPath,pathInRange,BTPrune,BTTilt,rightSideView,leftSideView,BTdll,BTcdll,zigzag,boundariesinBT
 
--kAnagrams,countSubArr0s1s2s,sieveOfEronthesis,maxLenSubstrOfUniqueChar,countSubstrOfUniqueChar,longestSubArrTar,longestSubArrDivK,LongSubstrOfKUniqueChar/count,LargestSubArrTar0,nextCloseTime
+18July:
+rootToLeafPIR,nodesAtOddLvl,sumOfOddNEvenLvl,kUPLeaf,kDown,kFar,mirrorBT,minDistbwBSTNodes,minDepthBT,minDepth_In_Pre,maxNodesAtLvl,sumNtoL,sumLtoL,sumNtoN,LLtoBT,BTtoBST,longestConsecutiveInTree,leftMostrightMost,isBST,largestBSTRoot,largestBSTSize,leafAtSameLvl,leafUnderBudget,kthLargest,isSimilar,isMirror,isFoldable,transformToLD,transformFromLD,clonningWithRandomPointer
+
+19July:
+morrisTrav-LNR,NLR,perfectBT,pre+in,post+in,pre+post,serializationArr,predSuccMT,printPOSTusingPRE,isBSTorNot,printNodesBWRanges,commonEleIn2BST,printLeafsUsingPRE,LCABT,LCABST,pthLCA
+
+21July:
+countUnivalueST,countNonLeaf,sortedArrBST,serialiazationString,closestBSTVal,verticleWidth(span),verticleSum,uniqueBST(catalan),topView,bottomView,SumTree,convertToSumTree,sumRootToLeafNo,imageMul,isBSTaHeap,isBSTaCT,distB/WtoNodes,clonningTree
+
+
+************************************************************************
+23July:maxOfJminusI,genAllSortedArr,smallestPosOfSubArr,smallestValOfPlusAndXor,minSwapToLessThanK,largestSubArrSumAtleastKEle
+
+************************************************************************
+LinkedList:
+Display,AddLast,AddFirst,GetFirst,GetLast,getAt,getNodeAt,removeFirst,removeLast,removeAt,dispRev(rec)
+Di(I),Pi(i),Di(r),Pi(r), isPallindrome,fold
+Mid,KfrmLast,kreverse1,2
+Dup,oddeven,floydcycle,mergeSL,mergesort,w/o removing nodes
+
+************************************************************************
+Stacks&Queues:
+hasDupBrackets,balancedBrack,nge1,nge2,LAH,maxInSW,stockSpan,ddid,infix123(eval,pre,post),postfix123(eval,pre,in),prefix123(eval,in,post),expTree,mergeOverLapInt,celebrityProb,stack imp (push,pop,top- arr,LL,Queue),2stack,minstack,Petrol Pumps.Queue(arr,LL,Stack),DynamicS&Q(inc arr.size), S2Q, Q2S
+-kstack
+
+************************************************************************
+-kAnagrams,countSubArr0s1s2s,sieveOfEronthesis,maxLenSubstrOfUniqueChar,countSubstrOfUniqueChar,longestSubArrTar,longestSubArrDivK,LongSubstrOfKUniqueChar/count,LargestSubArrTar0,nextCloseTime,quadraticEq,shortestDisBW2Num,shortestDisBW2SameNum,spiltArrEqijkSum,maxSubArrOfPosSum
