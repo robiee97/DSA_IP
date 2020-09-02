@@ -199,11 +199,105 @@ public class July22{
         root.data+=l;
         return root.data+r;
     }
+
+    public static void mirror(Node root){
+        if(root==null){
+            return;
+        }
+        Node temp=root.left;
+        root.left=root.right;
+        root.right=temp;
+
+        mirror(root.left);
+        mirror(root.right);
+    }
+    public static boolean isSimilar(Node root1,Node root2){
+        if(root1==null&&root2==null){
+            return true;
+        } 
+        if(root1!=null && root2!=null && 
+            isSimilar(root1.left, root2.left)&&
+            isSimilar(root1.right, root2.right)){
+                return true;
+        }
+        return false;
+    }
+    public static boolean isFoldable(Node root){
+        if(root==null){
+            return true;
+        }
+        mirror(root.left);
+        boolean res = isSimilar(root.left,root.right);
+        mirror(root.left);
+        return res;
+    }
+
+    public static int d=0;
+    public static void deepestLeftLeaf(Node root, boolean leftNode,int lvl){
+        if(root.left==null && root.right==null){
+           if(leftNode){
+                d=Math.max(d, lvl);
+           }
+           return;
+        }
+        deepestLeftLeaf(root.left, true, lvl+1);
+        deepestLeftLeaf(root.right, false, lvl+1);
+    }
+
+    public static void revAltLvlNodes(Node root, int lvl){
+        if(root.left==null&&root.right==null){
+            return;
+        }
+        if(lvl%2==0){
+            Node temp=root.left;
+            root.left=root.right;
+            root.right=temp;
+        }
+        revAltLvlNodes(root.left, lvl+1);
+        revAltLvlNodes(root.right, lvl+1);
+    }
+
+    public static Node removeLeafPathKlen(Node root,int k,int lvl){
+        if(root==null){
+            return null;
+        }
+        root.left=removeLeafPathKlen(root.left, k, lvl+1);
+        root.right=removeLeafPathKlen(root.right, k, lvl+1);
+        if(root.left==null&&root.right==null && lvl<k){
+            return null;
+        }
+        return root;
+    }
+
+    public static void revTreePath(Node root,Node first,int val){
+        if(root==null){
+            return;
+        }
+        if(root.data==val){
+            int temp=first.data;
+            first.data=root.data;
+            root.data=temp;
+        }
+        revTreePath(root.left,first, val);
+        revTreePath(root.right,first, val);
+    } 
+    
+    static String str="";
+    public static void serialize(Node root){
+        if(root==null){
+            str+="-1 ";
+            return;
+        }
+        str+=root.data+" ";
+        serialize(root.left);
+        serialize(root.right);
+    }
+
     public static void main(String[] args) {
         int[] arr = { 5, -10, 9, -1, 8, -1, -1, 3, -4, -1, 7, -1, -1, -1 };
         // int[] arr = { 5, 1, 0, -1, 4, -1, -1, 2, 3, -1,6,-1, -1, -1 };
         Node root = construct(arr);
-        // display(root);`
+        // display(root);
         // System.out.println(countSubTreeSumX(root,7).count);
         // diagnolTraversal(root,0,0);
         // printDia();
@@ -222,5 +316,15 @@ public class July22{
         // constructBTusingParentArr(new int[]{1, 5, 5, 2, 2, -1, 3});
         // bTtoSumOfLeftSubtree(root);
         // display(root);
+        // System.out.println(isFoldable(root));
+        // deepestLeftLeaf(root, true, 0);
+        // System.out.println(d);
+        // revAltLvlNodes(root, 0);
+        // display(root);
+        // display(removeLeafPathKlen(root, 2, 0));       
+        // revTreePath(root,root, 9);
+        // display(root);
+        // serialize(root);
+        // System.out.println(str);
     }
 }

@@ -10,6 +10,7 @@ public class June29 {
         // tripletSumClosest();
         // ambigousCoordinates();
         // loopingInArr();
+        // System.out.println(largestTime(new int[]{1,7,2,9}));
     }
 
 
@@ -135,5 +136,64 @@ public class June29 {
             }
             i++;
         }
+    }
+    
+    public static String largestTime(int[] arr){
+        //2digit all permutations store in pq less than 59
+        String ans="";
+        HashMap<Integer,Integer>fmap= new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            fmap.put(arr[i],fmap.containsKey(arr[i])?fmap.get(arr[i])+1:1);
+        }
+        ArrayList<String> list= new ArrayList<>();
+        for(int i=0;i<arr.length-1;i++){
+            for(int j=i+1;j<arr.length;j++){
+                String n1=""+arr[i]+arr[j];
+                String n2=""+arr[j]+arr[i];
+                if(Integer.parseInt(n1)<=59){
+                    list.add(n1);
+                }
+                if(Integer.parseInt(n2)<=59){
+                    list.add(n2);
+                }
+            }
+        }
+        Collections.sort(list, Collections.reverseOrder());
+        // System.out.println(list);
+        int i=0;
+        while(i<list.size()){
+            if(Integer.parseInt(list.get(i))<=23){
+                int j=0;
+                while(j<list.size()){
+                    if(j!=i){
+                        String temp=list.get(i)+list.get(j);
+                        if(isValid(temp,fmap)){
+                            ans=list.get(i)+":"+list.get(j);
+                            return ans;
+                        } 
+                    }
+                    j++;
+                }
+            }
+            i++;
+        }
+        return ans;
+    }
+    public static boolean isValid(String str,HashMap<Integer,Integer> fmap){
+        boolean ans=true;
+        HashMap<Integer,Integer>lmap= new HashMap<>();
+        for(char c:str.toCharArray()){
+            lmap.put(c-'0',lmap.containsKey(c-'0')?lmap.get(c-'0')+1:1);
+        }
+        for(int i:lmap.keySet()){
+            if(!fmap.containsKey(i)){
+                return false;
+            }else{
+                if(fmap.get(i)!=lmap.get(i)){
+                    return false;
+                }
+            }
+        }
+        return ans;
     }
 }
