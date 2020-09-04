@@ -293,6 +293,24 @@ public class July22{
         serialize(root.right);
     }
 
+    public static int height(Node root){
+        if(root==null){
+            return 0;
+        }
+        return Math.max(height(root.left), height(root.right))+1;
+    }
+    public static int diameter(Node root){
+        if(root==null){
+            return 0;
+        }
+        int lh=height(root.left);
+        int rh=height(root.right);
+        
+        int dl= diameter(root.left);
+        int dr= diameter(root.right);
+
+        return Math.max(dl,Math.max(dr, lh+rh+2));
+    }
     public static void main(String[] args) {
         int[] arr = { 5, -10, 9, -1, 8, -1, -1, 3, -4, -1, 7, -1, -1, -1 };
         // int[] arr = { 5, 1, 0, -1, 4, -1, -1, 2, 3, -1,6,-1, -1, -1 };
@@ -326,5 +344,6 @@ public class July22{
         // display(root);
         // serialize(root);
         // System.out.println(str);
+        System.out.println(diameter(root));
     }
 }
