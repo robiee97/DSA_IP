@@ -189,12 +189,18 @@ public class July21 {
     }
 
     public static Node mergeTwoTrees(Node root1, Node root2) {
-        if(root1==null ||root2==null){
+        if(root1==null && root2==null){
             return null;
         }
+        if(root1==null){
+            return root2;
+        }
+        if(root2==null){
+            return root1;
+        }
+        root1.data+=root2.data;
         root1.left=mergeTwoTrees(root1.left, root2.left);
         root1.right=mergeTwoTrees(root1.right, root2.right);
-        root1.data+=root2!=null?root2.data:0;
         return root1;
     }
 
